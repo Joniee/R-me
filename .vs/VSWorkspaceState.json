@@ -3,8 +3,10 @@
     "",
     "\\Server",
     "\\Server\\Sockets_Server",
-    "\\User"
+    "\\User",
+    "\\User\\Debug",
+    "\\User\\Sockets_User"
   ],
-  "SelectedNode": "\\Server\\Sockets_Server\\Server.cpp",
+  "SelectedNode": "\\User\\Sockets_User\\Client.cpp",
   "PreviewInSolutionExplorer": false
 }

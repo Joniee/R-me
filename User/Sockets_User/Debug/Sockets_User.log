@@ -1,2 +1,3 @@
 ﻿  Client.cpp
-  Sockets_User.vcxproj -> C:\Users\Jonie\source\repos\Sockets_User\Debug\Sockets_User.exe
+MSVCRTD.lib(exe_main.obj) : error LNK2019: símbolo externo _main sin resolver al que se hace referencia en la función "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+D:\Proyectos\R-me\User\Debug\Sockets_User.exe : fatal error LNK1120: 1 externos sin resolver
