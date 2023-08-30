@@ -1,0 +1,83 @@
+﻿  Album.cpp
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(6,8): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(6,7): error C2535: 'Album::Album(void)': función miembro ya definida o declarada
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(5): message : vea la declaración de 'Album::Album'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(7,8): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(7,7): error C2535: 'Album::Album(void)': función miembro ya definida o declarada
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(5): message : vea la declaración de 'Album::Album'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(8,16): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(9,9): error C3646: 'getTitle': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(9,17): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(9,19): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(5,14): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(10,17): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(11,9): error C3646: 'getArtist': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(11,18): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(11,20): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(12,16): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(13,9): error C3646: 'getTitle': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(13,17): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(13,19): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(14,15): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(15,9): error C3646: 'getPath': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(15,16): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(15,18): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(16,17): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(17,9): error C3646: 'getLyrics': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(17,18): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(17,20): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(21,9): error C2143: error de sintaxis: falta ';' delante de '<'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(21,9): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(21,26): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(22,9): error C2143: error de sintaxis: falta ';' delante de '<'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(22,9): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(22,25): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.cpp(11,1): error C2011: 'Album': nueva definición del tipo 'class'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(3): message : vea la declaración de 'Album'
+  Song.cpp
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(5,14): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(8,16): error C2061: error de sintaxis: identificador 'Album'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(9,8): error C3646: 'getAlbum': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(9,16): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(9,18): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(10,17): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(11,9): error C3646: 'getArtist': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(11,18): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(11,20): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(12,16): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(13,9): error C3646: 'getTitle': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(13,17): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(13,19): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(14,15): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(15,9): error C3646: 'getPath': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(15,16): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(15,18): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(16,17): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(17,9): error C3646: 'getLyrics': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(17,18): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(17,20): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(21,9): error C2143: error de sintaxis: falta ';' delante de '<'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(21,9): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(21,26): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(22,9): error C2143: error de sintaxis: falta ';' delante de '<'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(22,9): error C4430: falta el especificador de tipo; se presupone int. Nota: C++ no admite default-int
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(22,25): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(6,8): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(6,7): error C2535: 'Album::Album(void)': función miembro ya definida o declarada
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(5): message : vea la declaración de 'Album::Album'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(7,8): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(7,7): error C2535: 'Album::Album(void)': función miembro ya definida o declarada
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(5): message : vea la declaración de 'Album::Album'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(8,16): error C2061: error de sintaxis: identificador 'string'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(9,9): error C3646: 'getTitle': especificador de invalidación desconocido
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(9,17): error C2059: error de sintaxis: '('
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(9,19): error C2238: símbolos (token) inesperados delante de ';'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.cpp(11,1): error C2011: 'Album': nueva definición del tipo 'class'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Album.h(3): message : vea la declaración de 'Album'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.cpp(17,1): error C2011: 'Song': nueva definición del tipo 'class'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.h(3): message : vea la declaración de 'Song'
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.cpp(139,18): warning C4129: 'M': secuencia de escape de carácter no reconocida
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.cpp(139,18): warning C4129: 'C': secuencia de escape de carácter no reconocida
+C:\Users\Jonie\source\repos\Sockets_Server\Sockets_Server\Song.cpp(139,18): warning C4129: 'D': secuencia de escape de carácter no reconocida
+  User.cpp
+  Generando código...
