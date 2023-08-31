@@ -5,7 +5,11 @@
       <FullPath>D:\Proyectos\R-me\Reproductor\Debug\Reproductor.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>D:\Proyectos\R-me\Reproductor\Reproductor\html1.htm</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>
