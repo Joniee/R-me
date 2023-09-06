@@ -1,15 +1,4 @@
-#undef UNICODE
-
-using namespace std;
-
-#define WIN32_LEAN_AND_MEAN
-
-#include <windows.h>
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <iostream>
+#include "Server.h"
 
 
 // Need to link with Ws2_32.lib
@@ -19,8 +8,15 @@ using namespace std;
 #define DEFAULT_BUFLEN 512
 #define DEFAULT_PORT "27015"
 
-int __cdecl main(void)
+int initServer(PCSTR serverIP = "localhost")
 {
+    User user1 = User("Jondlmorga@gmail.com", "1234");
+    string userName;
+    string password;
+    string data;
+    bool sesion = false;
+    string code = "001";
+
     WSADATA wsaData;
     int iResult;
 
@@ -48,7 +44,7 @@ int __cdecl main(void)
     hints.ai_flags = AI_PASSIVE;
 
     // Resolve the server address and port
-    iResult = getaddrinfo(NULL, DEFAULT_PORT, &hints, &result);
+    iResult = getaddrinfo(serverIP, DEFAULT_PORT, &hints, &result);
     if (iResult != 0) {
         printf("getaddrinfo failed with error: %d\n", iResult);
         WSACleanup();
@@ -73,7 +69,6 @@ int __cdecl main(void)
         WSACleanup();
         return 1;
     }
-
     freeaddrinfo(result);
 
     iResult = listen(ListenSocket, SOMAXCONN);
@@ -97,22 +92,49 @@ int __cdecl main(void)
     closesocket(ListenSocket);
 
     // Receive until the peer shuts down the connection
-    do {
-
+    while (!sesion) {
         iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
         if (iResult > 0) {
-            printf("Bytes received: %d\n", iResult);
-            cout << recvbuf << endl;
+            userName.insert(0, recvbuf, iResult);
+            cout << userName << endl;
 
-            // Echo the buffer back to the sender
-            iSendResult = send(ClientSocket, recvbuf, iResult, 0);
-            if (iSendResult == SOCKET_ERROR) {
+            iResult = send(ClientSocket, "OK", 2, 0);
+            if (iResult == SOCKET_ERROR) {
                 printf("send failed with error: %d\n", WSAGetLastError());
                 closesocket(ClientSocket);
                 WSACleanup();
                 return 1;
             }
-            printf("Bytes sent: %d\n", iSendResult);
+
+            iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
+            if (iResult > 0) {
+                password.insert(0, recvbuf, iResult);
+                cout << password << endl;
+                if (user1.comparePass(userName, password))
+                {
+                    sesion = true;
+                    cout << "Sesión iniciada correctamente." << endl;
+                }
+                else {
+                    sesion = false;
+                    cout << "Error al iniciar sesion. Usuario o contraseña erróneos." << endl;
+                }
+                iResult = send(ClientSocket, "OK", 2, 0);
+                if (iResult == SOCKET_ERROR) {
+                    printf("send failed with error: %d\n", WSAGetLastError());
+                    closesocket(ClientSocket);
+                    WSACleanup();
+                    return 1;
+                }
+            }
+            else if (iResult == 0)
+                printf("Connection closing...\n");
+            else {
+                printf("recv failed with error: %d\n", WSAGetLastError());
+                closesocket(ClientSocket);
+                WSACleanup();
+                return 1;
+            }
         }
         else if (iResult == 0)
             printf("Connection closing...\n");
@@ -122,11 +144,33 @@ int __cdecl main(void)
             WSACleanup();
             return 1;
         }
+    }
 
-    } while (iResult > 0);
-
-    
-
+    do {
+        iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
+        if (iResult > 0) {
+            code.insert(0, recvbuf, 3);
+            cout << (code.compare("010")) << endl;
+         
+            iResult = send(ClientSocket, "OK", 2, 0);
+            if (iResult == SOCKET_ERROR) {
+                printf("send failed with error: %d\n", WSAGetLastError());
+                closesocket(ClientSocket);
+                WSACleanup();
+                return 1;
+            }
+        }
+        else if (iResult == 0) {
+            printf("Connection closing...\n");
+            break;
+        }
+        else {
+            printf("recv failed with error: %d\n", WSAGetLastError());
+            closesocket(ClientSocket);
+            WSACleanup();
+            return 1;
+        }
+    } while (1);
     // shutdown the connection since we're done
     iResult = shutdown(ClientSocket, SD_SEND);
     if (iResult == SOCKET_ERROR) {
@@ -135,6 +179,7 @@ int __cdecl main(void)
         WSACleanup();
         return 1;
     }
+    
 
     // cleanup
     closesocket(ClientSocket);
@@ -142,3 +187,4 @@ int __cdecl main(void)
 
     return 0;
 }
+

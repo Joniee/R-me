@@ -6,11 +6,6 @@
 
 using namespace std;
 
-
-string m_username;
-
-string m_password;
-
 class User{
 private:
 	string m_username;
@@ -20,4 +15,5 @@ public:
 	~User();
 	int changePass(string, string, string);
 	string getName();
+	bool comparePass(string, string);
 };

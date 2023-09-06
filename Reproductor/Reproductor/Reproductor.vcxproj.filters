@@ -47,6 +47,8 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="html1.htm" />
+    <Xml Include="manifest.xml">
+      <Filter>Archivos de recursos</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

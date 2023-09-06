@@ -1,2 +1,3 @@
-﻿  Album.cpp
-  Sockets_Server.vcxproj -> C:\Users\Jonie\source\repos\Sockets_Server\x64\Debug\Sockets_Server.exe
+﻿  Server.cpp
+D:\Proyectos\R-me\Server\Sockets_Server\Server.cpp(29,9): warning C4101: 'iSendResult': variable local sin referencia
+  Sockets_Server.vcxproj -> D:\Proyectos\R-me\Server\x64\Debug\Sockets_Server.exe

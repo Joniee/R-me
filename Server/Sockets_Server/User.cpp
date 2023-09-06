@@ -27,3 +27,14 @@ int User::changePass(string pastPass1, string pastPass2, string newPass) {
 string User::getName() {
 	return m_username;
 }
+
+bool User::comparePass(string user, string pass) {
+	SHA256 securePass;
+	if (user == m_username) {
+		if (m_password == securePass(pass)) {
+			return true;
+		}
+	}
+	
+	return false;
+}

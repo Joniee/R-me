@@ -3,8 +3,15 @@
 
 #include "framework.h"
 #include "Reproductor.h"
+#include <CommCtrl.h>
+#include <iostream>
+
+
+using namespace std;
 
 #define MAX_LOADSTRING 100
+
+
 
 // Variables globales:
 HINSTANCE hInst;                                // instancia actual
@@ -17,7 +24,6 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    LogIn(HWND, UINT, WPARAM, LPARAM);
-INT_PTR CALLBACK    Main(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -33,6 +39,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_REPRODUCTOR, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
+
 
     // Realizar la inicialización de la aplicación:
     if (!InitInstance (hInstance, nCmdShow))
@@ -125,6 +132,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    HFONT hFont = CreateFont(-14, 0, 0, 0, 0, FALSE, FALSE, FALSE, 1, 0, 0, 0, 0, L"Ms Shell Dlg");
+    int VH = WS_VISIBLE;
     switch (message)
     {
     case WM_COMMAND:
@@ -139,6 +148,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             case ID_LOGIN:
                 DialogBox (hInst, MAKEINTRESOURCE(IDD_LOGINBOX), hWnd, LogIn);
                 break;
+            case ID_LOGOUT:
+                break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
                 break;
@@ -147,17 +158,42 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+    case WM_CREATE:
+        {
+            CreateWindowEx(0, L"button", L"||", VH | WS_CHILD | 0x00000001, 752, 701, 30, 30, hWnd, (HMENU)IDC_PLAYPAUSE, hInst, 0);
+            CreateWindowEx(0, L"button", L">>|", VH | WS_CHILD | 0x00000001, 796, 701, 30, 30, hWnd, (HMENU)IDC_NEXT, hInst, 0);
+            CreateWindowEx(0, L"button", L"|<<", VH | WS_CHILD | 0x00000001, 708, 701, 30, 30, hWnd, (HMENU)IDC_PREVIOUS, hInst, 0);
+            CreateWindowEx(0, PROGRESS_CLASS, (LPTSTR)NULL, WS_CHILD | VH | PBS_SMOOTH, 467, 651, 600, 20, hWnd, (HMENU)IDC_TIME, hInst, NULL);
+            SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETRANGE32, 0, 1000);
+            SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETPOS, (WPARAM)250, 0);
+            SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETBARCOLOR, 0, (LPARAM)RGB(255, 255, 255));
+            SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETBKCOLOR, 0, (LPARAM)RGB(0, 0, 0));
+            /*CreateWindowEx(0, TRACKBAR_CLASS, NULL,
+                WS_CHILD | VH | WS_TABSTOP | TBS_HORZ, 200, 10, 1000, 40, hWnd, (HMENU)IDC_TIME,
+                hInst, NULL);
+            SendDlgItemMessage(hWnd, IDC_TIME, WM_SETFONT, (WPARAM)hFont, MAKELPARAM(FALSE, 0));
+            SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETRANGE, (WPARAM)FALSE, MAKELPARAM(0, 1000));
+            SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETTICFREQ, (WPARAM)1, 0);
+            SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETTHUMBLENGTH, (WPARAM)FALSE, 1000);*/
+        }
+        break;
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: Agregar cualquier código de dibujo que use hDC aquí...
-            
+            FillRgn(hdc, CreateRoundRectRgn(0, 0, 1425, 800, 5, 5), CreateSolidBrush(RGB(0, 0, 0)));
+            FillRgn(hdc, CreateRoundRectRgn(0, 0, 298, 598, 5, 5), CreateSolidBrush(RGB(50, 50, 50))); // Superior iz.
+            FillRgn(hdc, CreateRoundRectRgn(0, 602, 1425, 800, 5, 5), CreateSolidBrush(RGB(50, 50, 50))); //Inferior
+            FillRgn(hdc, CreateRoundRectRgn(302, 0, 1425, 598, 5, 5), CreateSolidBrush(RGB(50, 50, 50)));  //Superior der.
             EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
+        break;
+    case UIS_INITIALIZE:
+       // DialogBox(hInst, MAKEINTRESOURCE(IDD_LOGINBOX), hWnd, LogIn);
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
@@ -202,32 +238,8 @@ INT_PTR CALLBACK LogIn(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         }
         if (LOWORD(wParam) == IDYES)
         {
-
+            
             EndDialog(hDlg, LOWORD(wParam));
-            DialogBox(hInst, MAKEINTRESOURCE(IDD_MAIN), hDlg, Main);
-            return (INT_PTR)TRUE;
-        }
-        break;
-    }
-    return (INT_PTR)FALSE;
-}
-
-//Controlador de mensajes del cuadro Main, principal.
-INT_PTR CALLBACK Main(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) 
-{
-    UNREFERENCED_PARAMETER(lParam);
-    switch (message)
-    {
-    case WM_INITDIALOG:
-        return (INT_PTR)TRUE;
-
-    case WM_COMMAND:
-        if (LOWORD(wParam) == IDCANCEL || LOWORD(wParam) == IDC_CANCEL)
-        {
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;
-        }
-        if (LOWORD(wParam) == IDYES) {
             return (INT_PTR)TRUE;
         }
         break;
