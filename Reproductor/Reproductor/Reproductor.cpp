@@ -163,18 +163,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             CreateWindowEx(0, L"button", L"||", VH | WS_CHILD | 0x00000001, 752, 701, 30, 30, hWnd, (HMENU)IDC_PLAYPAUSE, hInst, 0);
             CreateWindowEx(0, L"button", L">>|", VH | WS_CHILD | 0x00000001, 796, 701, 30, 30, hWnd, (HMENU)IDC_NEXT, hInst, 0);
             CreateWindowEx(0, L"button", L"|<<", VH | WS_CHILD | 0x00000001, 708, 701, 30, 30, hWnd, (HMENU)IDC_PREVIOUS, hInst, 0);
-            CreateWindowEx(0, PROGRESS_CLASS, (LPTSTR)NULL, WS_CHILD | VH | PBS_SMOOTH, 467, 651, 600, 20, hWnd, (HMENU)IDC_TIME, hInst, NULL);
+            /*CreateWindowEx(0, PROGRESS_CLASS, (LPTSTR)NULL, WS_CHILD | VH | PBS_SMOOTH, 467, 651, 600, 20, hWnd, (HMENU)IDC_TIME, hInst, NULL);
             SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETRANGE32, 0, 1000);
             SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETPOS, (WPARAM)250, 0);
             SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETBARCOLOR, 0, (LPARAM)RGB(255, 255, 255));
-            SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETBKCOLOR, 0, (LPARAM)RGB(0, 0, 0));
-            /*CreateWindowEx(0, TRACKBAR_CLASS, NULL,
-                WS_CHILD | VH | WS_TABSTOP | TBS_HORZ, 200, 10, 1000, 40, hWnd, (HMENU)IDC_TIME,
+            SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETBKCOLOR, 0, (LPARAM)RGB(0, 0, 0));*/
+            CreateWindowEx(0, TRACKBAR_CLASS, NULL,
+                WS_CHILD | VH | WS_TABSTOP | TBS_HORZ, 467, 651, 600, 20, hWnd, (HMENU)IDC_TIME,
                 hInst, NULL);
             SendDlgItemMessage(hWnd, IDC_TIME, WM_SETFONT, (WPARAM)hFont, MAKELPARAM(FALSE, 0));
             SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETRANGE, (WPARAM)FALSE, MAKELPARAM(0, 1000));
             SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETTICFREQ, (WPARAM)1, 0);
-            SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETTHUMBLENGTH, (WPARAM)FALSE, 1000);*/
+            SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETTHUMBLENGTH, (WPARAM)FALSE, 1000);
         }
         break;
     case WM_PAINT:

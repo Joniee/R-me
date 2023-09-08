@@ -1,9 +1,14 @@
 #pragma once
 
-#include "Song.h"
+#ifndef Album_H
+#define Album_H
 
+#include "Song.h"
+#include "Linkedlist.h"
 #include <string>
-#include <vector>
+
+typedef class Song;
+typedef class Linkedlist;
 
 using namespace std;
 
@@ -13,19 +18,20 @@ private:
 	string m_title;
 	int m_year;
 	string m_artist;
-	vector <Song> m_songs;
+	Linkedlist m_songs;
 public:
 	Album();
 	Album(string, int, string);
-	Album(string, int, string, vector <Song>);
-	~Album();
+	Album(string, int, string, Linkedlist);
 	bool setTitle(string);
 	string getTitle();
 	bool setYear(int);
 	int getYear();
 	bool setArtist(string);
 	string getArtist();
-	bool addSong(Song);
-	vector <Song> getSongs();
+	bool addSong(Song*);
+	bool removeSong(Song*);
+	Linkedlist getSongs();
 	void toString();
 };
+#endif

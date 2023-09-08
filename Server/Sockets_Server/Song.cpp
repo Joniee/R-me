@@ -1,26 +1,36 @@
 #include "Song.h"
 
-Song::Song() {
 
+Song::Song() {
+	m_timeM = 0;
+	m_timeS = 0;
+	m_title = "";
+	m_path = "";
+	m_seeAlso = Linkedlist();
+	m_similars = Linkedlist();
 }
 
-Song::Song(float time, string title, string path) {
-	m_time = time;
+Song::Song(int min, int sec, string title, string path) {
+	m_timeM = min;
+	m_timeS = sec;
 	m_title = title;
 	m_path = path;
+	m_seeAlso = Linkedlist();
+	m_similars = Linkedlist();
 }
 
-Song::~Song() {
-
-}
-
-bool Song::setTime(float time) {
-	m_time = time;
+bool Song::setTime(int min, int sec) {
+	m_timeM = min;
+	m_timeS = sec;
 	return true;
 }
 
-float Song::getTime() {
-	return m_time;
+int Song::getTimeM() {
+	return m_timeM;
+}
+
+int Song::getTimeS() {
+	return m_timeS;
 }
 
 bool Song::setTitle(string title) {
@@ -50,9 +60,35 @@ string Song::getLyrics() {
 	return m_lyrics;
 }
 
-bool Song::addSimilar(Song song) {
-	m_similars.push_back(song);
-	return true;
+bool Song::addSimilar(Song song){
+	return m_similars.append(&song);
+}
+
+bool Song::removeSimilar(Song song) {
+	return m_similars.removeSong(&song);
+}
+
+bool Song::removeSimilar(int position) {
+	return m_similars.remove(position);
+}
+
+bool Song::removeAllSimilars() {
+	return m_similars.removeList();
+}
+
+bool Song::addSeeAlso(Song song) {
+	return m_seeAlso.append(&song);
+}
+bool Song::removeSeeAlso(Song song) {
+	return m_seeAlso.removeSong(&song);
+}
+
+bool Song::removeSeeAlso(int position) {
+	return m_seeAlso.remove(position);
+}
+
+bool Song::removeAllSeeAlso() {
+	return m_seeAlso.removeList();
 }
 
 bool Song::operator==(Song song) {
@@ -60,27 +96,13 @@ bool Song::operator==(Song song) {
 }
 
 void Song::toString() {
-	cout << "Title: " << m_title << endl;
+	cout << "Title: " << m_title << " - Time: " << m_timeM << ":" << m_timeS << endl;
 }
 
-vector <Song> Song::similars() {
-	if (m_seeAlso.size() > 2) {
-		vector <Song> similars;
-		for (int i = 0; i < 3; i++) {
-			similars.push_back(m_similars[i]);
-		}
-		return m_similars;
-	}
-	return vector <Song>();
+Linkedlist Song::similars() {
+	return m_similars;
 }
 
-vector <Song> Song::seeAlso() {
-	if (m_seeAlso.size() > 2) {
-		vector <Song> seeAlso3;
-		for (int i = 0; i < 3; i++) {
-			seeAlso3.push_back(m_seeAlso[i]);
-		}
-		return m_seeAlso;
-	}
-	return vector <Song>();
+Linkedlist Song::seeAlso() {
+	return m_seeAlso;
 }
