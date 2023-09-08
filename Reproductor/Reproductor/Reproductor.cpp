@@ -163,6 +163,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             CreateWindowEx(0, L"button", L"||", VH | WS_CHILD | 0x00000001, 752, 701, 30, 30, hWnd, (HMENU)IDC_PLAYPAUSE, hInst, 0);
             CreateWindowEx(0, L"button", L">>|", VH | WS_CHILD | 0x00000001, 796, 701, 30, 30, hWnd, (HMENU)IDC_NEXT, hInst, 0);
             CreateWindowEx(0, L"button", L"|<<", VH | WS_CHILD | 0x00000001, 708, 701, 30, 30, hWnd, (HMENU)IDC_PREVIOUS, hInst, 0);
+            
+            CreateWindowEx(0, L"pict", L"|<<", VH | WS_CHILD | 0x00000001, 200, 200, 30, 30, hWnd, (HMENU)IDC_PREVIOUS, hInst, 0);
+            
+            RECT hwndRect;
+            GetWindowRect(hWnd, &hwndRect);
+            int winWidth;
+            int winHeight;
+            winWidth = hwndRect.right - hwndRect.left;
+            winHeight = hwndRect.bottom - hwndRect.top;
+
+            HBITMAP logoImage;
+            logoImage = (HBITMAP)LoadImage(GetModuleHandle(NULL), MAKEINTRESOURCE(IDB_LOGO), IMAGE_BITMAP, winWidth - 180, winHeight - 530, LR_DEFAULTCOLOR);
+            HWND logo = CreateWindowEx(0, L"static", NULL, SS_BITMAP | SS_CENTER | WS_CHILD | WS_VISIBLE, 0, 0, winWidth - 180, winHeight - 530, hWnd, NULL, NULL, NULL);
+            SendMessage(logo, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM)logoImage);
+
+            
+            for (int i = 0; i < 5; i++) {
+                CreateWindowEx(0, L"button", L"Tomate", VH | WS_CHILD | 0x00000001, 5, (5 + (i*30)), 70, 20, hWnd, (HMENU)IDC_PREVIOUS, hInst, 0);
+            }
+            
             /*CreateWindowEx(0, PROGRESS_CLASS, (LPTSTR)NULL, WS_CHILD | VH | PBS_SMOOTH, 467, 651, 600, 20, hWnd, (HMENU)IDC_TIME, hInst, NULL);
             SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETRANGE32, 0, 1000);
             SendDlgItemMessage(hWnd, IDC_TIME, PBM_SETPOS, (WPARAM)250, 0);
@@ -175,6 +195,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETRANGE, (WPARAM)FALSE, MAKELPARAM(0, 1000));
             SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETTICFREQ, (WPARAM)1, 0);
             SendDlgItemMessage(hWnd, IDC_TIME, TBM_SETTHUMBLENGTH, (WPARAM)FALSE, 1000);
+
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_LOGINBOX), hWnd, LogIn);
         }
         break;
     case WM_PAINT:
@@ -238,7 +260,6 @@ INT_PTR CALLBACK LogIn(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         }
         if (LOWORD(wParam) == IDYES)
         {
-            
             EndDialog(hDlg, LOWORD(wParam));
             return (INT_PTR)TRUE;
         }

@@ -32,6 +32,8 @@
 #define IDC_CANCEL                      3000
 #define IDC_PASSWORD                    3001
 #define IDC_USERID                      3002
+#define IDC_PLAYLIST					3003
+#define IDB_LOGO						3004
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
