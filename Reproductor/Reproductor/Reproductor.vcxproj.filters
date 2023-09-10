@@ -51,4 +51,7 @@
       <Filter>Archivos de recursos</Filter>
     </Xml>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>

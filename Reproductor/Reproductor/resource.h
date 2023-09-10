@@ -21,7 +21,8 @@
 #define ID_LOGOUT                       132
 #define IDD_LOGOUTBOX                   133
 #define ID_INICIO                       134
-#define IDC_PLAYPAUSE                   200
+#define IDC_PAUSE						199
+#define IDC_PLAY						200
 #define IDC_NEXT                        201
 #define IDC_PREVIOUS                    202
 #define IDC_MUTE                        203
@@ -33,7 +34,10 @@
 #define IDC_PASSWORD                    3001
 #define IDC_USERID                      3002
 #define IDC_PLAYLIST					3003
-#define IDB_LOGO						3004
+#define IDB_ALBUM						3005
+#define ID_STARTED						30001
+#define ID_ENDED						30002
+#define ID_LOADMUSIC					30003
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -42,7 +46,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        134
-#define _APS_NEXT_COMMAND_VALUE         30000
+#define _APS_NEXT_COMMAND_VALUE         30004
 #define _APS_NEXT_CONTROL_VALUE         1013
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
