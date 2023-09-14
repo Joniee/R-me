@@ -20,8 +20,8 @@ private:
 	string m_path;
 	string m_title;
 	string m_lyrics;
-	Linkedlist m_seeAlso;
-	Linkedlist m_similars;
+	Linkedlist *m_seeAlso;
+	Linkedlist *m_similars;
 public:
 	Song();
 	Song(int, int, string, string);

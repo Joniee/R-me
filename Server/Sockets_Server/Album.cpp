@@ -5,7 +5,7 @@ Album::Album() {
 	m_title = "";
 	m_year = 0;
 	m_artist = "";
-	m_songs = Linkedlist();
+	m_songs = new Linkedlist();
 }
 
 Album::Album(string title, int year, string artist) {
@@ -18,7 +18,7 @@ Album::Album(string title, int year, string artist, Linkedlist list) {
 	m_title = title;
 	m_year = year;
 	m_artist = artist;
-	m_songs = list;
+	m_songs = &list;
 }
 
 bool Album::setTitle(string title) {
@@ -49,16 +49,16 @@ string Album::getArtist() {
 }
 
 bool Album::addSong(Song* song) {
-	return m_songs.append(song);
+	return m_songs->append(song);
 }
 
 bool Album::removeSong(Song* song) {
-	return m_songs.removeSong(song);
+	return m_songs->removeSong(song);
 	
 }
 
 Linkedlist Album::getSongs() {
-	return m_songs;
+	return *m_songs;
 }
 
 void Album::toString() {
@@ -66,5 +66,5 @@ void Album::toString() {
 	cout << "Year of publication: " << m_year << endl;
 	cout << "Artist: " << m_artist << endl;
 	cout << "List of songs: " << endl;
-	m_songs.toString();
+	m_songs->toString();
 }

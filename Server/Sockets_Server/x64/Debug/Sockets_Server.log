@@ -1,27 +1,3 @@
-﻿  Node.cpp
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(6,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Node' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(7,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Song' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(13,7): error C2079: 'Linkedlist::m_head' utiliza class 'Node' sin definir
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(14,7): error C2079: 'Linkedlist::m_back' utiliza class 'Node' sin definir
-D:\Proyectos\R-me\Server\Sockets_Server\Song.h(10,25): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Linkedlist' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Node.h(5,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Song' cuando no hay ninguna variable declarada
-  Playlist.cpp
-D:\Proyectos\R-me\Server\Sockets_Server\Song.h(10,25): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Linkedlist' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Song.h(21,13): error C2079: 'Song::m_seeAlso' utiliza class 'Linkedlist' sin definir
-D:\Proyectos\R-me\Server\Sockets_Server\Song.h(22,13): error C2079: 'Song::m_similars' utiliza class 'Linkedlist' sin definir
-D:\Proyectos\R-me\Server\Sockets_Server\Node.h(5,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Song' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(6,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Node' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(7,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Song' cuando no hay ninguna variable declarada
-  Song.cpp
-D:\Proyectos\R-me\Server\Sockets_Server\Node.h(5,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Song' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(6,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Node' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(7,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Song' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Song.h(10,25): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Linkedlist' cuando no hay ninguna variable declarada
-  Linkedlist.cpp
-D:\Proyectos\R-me\Server\Sockets_Server\Song.h(10,25): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Linkedlist' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Song.h(21,13): error C2079: 'Song::m_seeAlso' utiliza class 'Linkedlist' sin definir
-D:\Proyectos\R-me\Server\Sockets_Server\Song.h(22,13): error C2079: 'Song::m_similars' utiliza class 'Linkedlist' sin definir
-D:\Proyectos\R-me\Server\Sockets_Server\Node.h(5,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Song' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(6,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Node' cuando no hay ninguna variable declarada
-D:\Proyectos\R-me\Server\Sockets_Server\Linkedlist.h(7,19): warning C4091: 'typedef ': se ha omitido a la izquierda de 'Song' cuando no hay ninguna variable declarada
-  Generando código...
+﻿  Server.cpp
+D:\Proyectos\R-me\Server\Sockets_Server\Server.cpp(29,9): warning C4101: 'iSendResult': variable local sin referencia
+  Sockets_Server.vcxproj -> D:\Proyectos\R-me\Server\x64\Debug\Sockets_Server.exe

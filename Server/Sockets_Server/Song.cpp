@@ -6,8 +6,8 @@ Song::Song() {
 	m_timeS = 0;
 	m_title = "";
 	m_path = "";
-	m_seeAlso = Linkedlist();
-	m_similars = Linkedlist();
+	m_seeAlso = new Linkedlist();
+	m_similars = new Linkedlist();
 }
 
 Song::Song(int min, int sec, string title, string path) {
@@ -15,8 +15,8 @@ Song::Song(int min, int sec, string title, string path) {
 	m_timeS = sec;
 	m_title = title;
 	m_path = path;
-	m_seeAlso = Linkedlist();
-	m_similars = Linkedlist();
+	m_seeAlso = new Linkedlist();
+	m_similars = new Linkedlist();
 }
 
 bool Song::setTime(int min, int sec) {
@@ -61,34 +61,34 @@ string Song::getLyrics() {
 }
 
 bool Song::addSimilar(Song song){
-	return m_similars.append(&song);
+	return m_similars->append(&song);
 }
 
 bool Song::removeSimilar(Song song) {
-	return m_similars.removeSong(&song);
+	return m_similars->removeSong(&song);
 }
 
 bool Song::removeSimilar(int position) {
-	return m_similars.remove(position);
+	return m_similars->remove(position);
 }
 
 bool Song::removeAllSimilars() {
-	return m_similars.removeList();
+	return m_similars->removeList();
 }
 
 bool Song::addSeeAlso(Song song) {
-	return m_seeAlso.append(&song);
+	return m_seeAlso->append(&song);
 }
 bool Song::removeSeeAlso(Song song) {
-	return m_seeAlso.removeSong(&song);
+	return m_seeAlso->removeSong(&song);
 }
 
 bool Song::removeSeeAlso(int position) {
-	return m_seeAlso.remove(position);
+	return m_seeAlso->remove(position);
 }
 
 bool Song::removeAllSeeAlso() {
-	return m_seeAlso.removeList();
+	return m_seeAlso->removeList();
 }
 
 bool Song::operator==(Song song) {
@@ -100,9 +100,9 @@ void Song::toString() {
 }
 
 Linkedlist Song::similars() {
-	return m_similars;
+	return *m_similars;
 }
 
 Linkedlist Song::seeAlso() {
-	return m_seeAlso;
+	return *m_seeAlso;
 }

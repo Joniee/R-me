@@ -3,8 +3,8 @@
 
 Linkedlist::Linkedlist() {
 	m_size = 0;
-	m_head = Node();
-	m_back = Node();
+	m_head = new Node();
+	m_back = new Node();
 }
 
 Linkedlist::Linkedlist(Song *item) {
@@ -12,8 +12,8 @@ Linkedlist::Linkedlist(Song *item) {
 	head.setNext(&head);
 	head.setPrevious(&head);
 	m_size++;
-	m_head = head;
-	m_back = head;
+	m_head = &head;
+	m_back = &head;
 }
 
 bool Linkedlist::append(Song *item) {
@@ -22,15 +22,15 @@ bool Linkedlist::append(Song *item) {
 		head.setNext(&head);
 		head.setPrevious(&head);
 		m_size++;
-		m_head = head;
-		m_back = head;
+		m_head = &head;
+		m_back = &head;
 		return true;
 	}
 	if (m_size >= 1) {
-		Node back(&m_back, &m_head, item);
-		m_back.setNext(&back);
-		m_head.setPrevious(&back);
-		m_back = back;
+		Node back(m_back, m_head, item);
+		m_back->setNext(&back);
+		m_head->setPrevious(&back);
+		m_back = &back;
 		m_size++;
 		return true;
 	}
@@ -50,14 +50,14 @@ bool Linkedlist::remove(int position) {
 	}
 	if (m_size > 1) {
 		if (position == 0) {
-			m_back.setNext(m_head.getNext());
-			m_head.getNext()->setPrevious(&m_back);
+			m_back->setNext(m_head->getNext());
+			m_head->getNext()->setPrevious(m_back);
 		}
 		if (position == m_size - 1)
 		{
 			removeBack();
 		}
-		Node* act = &m_head;
+		Node* act = m_head;
 		for (int i = 0; i < position; i++)
 		{
 			act = act->getNext();
@@ -76,17 +76,16 @@ bool Linkedlist::removeBack()
 		return false;
 	}
 	if (m_size == 1) {
-		m_head.setNext(&m_head);
-		m_head.setPrevious(&m_head);
-		m_back.~Node();
+		m_head->setNext(m_head);
+		m_head->setPrevious(m_head);
 		m_back = m_head;
 		m_size--;
 		return true;
 	}
 	if (m_size > 1) {
-		m_back.getPrevious()->setNext(&m_head);
-		m_head.setPrevious(m_back.getPrevious());
-		m_back = *m_back.getPrevious();
+		m_back->getPrevious()->setNext(m_head);
+		m_head->setPrevious(m_back->getPrevious());
+		m_back = m_back->getPrevious();
 		m_size--;
 		return true;
 	}
@@ -98,15 +97,15 @@ bool Linkedlist::removeSong(Song* item) {
 	{
 		return false;
 	}
-	if (m_head.getSong() == item)
+	if (m_head->getSong() == item)
 	{
 		return remove(0);
 	}
-	if (m_back.getSong() == item)
+	if (m_back->getSong() == item)
 	{
 		return removeBack();
 	}
-	Node* act = &m_head;
+	Node* act = m_head;
 	while (act->getNext()->getSong() != item)
 	{
 		act = act->getNext();
@@ -123,18 +122,18 @@ bool Linkedlist::insert(int position, Song* item) {
 	}
 	if (m_size == 0) {
 		Node head(item);
-		m_head = head;
-		m_back = head;
+		m_head = &head;
+		m_back = &head;
 		m_size++;
 		return true;
 	}
 	if (m_size == 1) {
 		if (position == 0) {
 			Node head(item);
-			m_back.setNext(&head);
-			head.setNext(&m_head);
-			m_head.setPrevious(&head);
-			m_head = head;
+			m_back->setNext(&head);
+			head.setNext(m_head);
+			m_head->setPrevious(&head);
+			m_head = &head;
 			m_size++;
 			return true;
 		}
@@ -142,7 +141,7 @@ bool Linkedlist::insert(int position, Song* item) {
 			append(item);
 		}
 		if (position > 0) {
-			Node* act;
+			Node* act = m_head;
 			for (int i = 0; i < position; i++) {
 				act = act->getNext();
 			}
@@ -159,6 +158,7 @@ bool Linkedlist::insert(int position, Song* item) {
 
 bool Linkedlist::sort() {
 	//TODO
+	return false;
 }
 
 bool Linkedlist::removeList() {
@@ -177,9 +177,9 @@ Song* Linkedlist::get(int position) {
 		return NULL;
 	}
 	if (position == 0) {
-		return m_head.getSong();
+		return m_head->getSong();
 	}
-	Node *act = &m_head;
+	Node *act = m_head;
 	if (position < 0) {
 		position = abs(position);
 		for (int i = 0; i < position; i++) {
@@ -194,23 +194,23 @@ Song* Linkedlist::get(int position) {
 }
 
 Song* Linkedlist::headSong() {
-	return m_head.getSong();
+	return m_head->getSong();
 }
 
 Node* Linkedlist::head() {
-	return &m_head;
+	return m_head;
 }
 
 Song* Linkedlist::backSong() {
-	return m_back.getSong();
+	return m_back->getSong();
 }
 
 Node* Linkedlist::back() {
-	return &m_back;
+	return m_back;
 }
 
 void Linkedlist::toString() {
-	Node* act = &m_head;
+	Node* act = m_head;
 	for (int i = 0; i < m_size; i++) {
 		cout << i << ". ";
 		act->getSong()->toString();

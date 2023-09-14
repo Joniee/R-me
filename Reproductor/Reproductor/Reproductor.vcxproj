@@ -142,11 +142,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="LogIn.h" />
     <ClInclude Include="Reproductor.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LogIn.cpp" />
     <ClCompile Include="Reproductor.cpp" />
   </ItemGroup>
   <ItemGroup>

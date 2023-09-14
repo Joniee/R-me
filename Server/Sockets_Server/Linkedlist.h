@@ -14,8 +14,8 @@ class Linkedlist
 {
 private:
 	int m_size = 0;
-	Node m_head;
-	Node m_back;
+	Node* m_head;
+	Node* m_back;
 public:
 	Linkedlist();
 	Linkedlist(Song*);

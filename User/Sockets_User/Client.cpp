@@ -15,7 +15,7 @@
 
 
 #define DEFAULT_BUFLEN 512
-#define DEFAULT_PORT "27015"
+#define DEFAULT_PORT "25665"
 
 int __cdecl main(int argc, char** argv)
 {

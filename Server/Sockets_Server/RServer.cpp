@@ -4,5 +4,10 @@
 using namespace std;
 
 int __cdecl main() {
-	return initServer("localhost");
+
+	bool serverResult = false;
+	while (!serverResult) {
+		serverResult = initServer("localhost");
+	}
+	return 0;
 }

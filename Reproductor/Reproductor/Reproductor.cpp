@@ -5,9 +5,11 @@
 
 #include "framework.h"
 #include "Reproductor.h"
+#include "LogIn.h"
 #include <CommCtrl.h>
 #include <iostream>
 #include <mmsystem.h>
+#include <string>
 
 #pragma comment(lib, "winmm.lib")
 
@@ -189,7 +191,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
             case IDB_ALBUM:
                 for (int i = 0; i < 1; i++) {
-                    CreateWindowEx(0, L"button", L"Donde Nace el Infarto", VH | WS_CHILD | WS_VSCROLL | ES_LEFT | 0x00000001, 5, (5 + (i * 30)), 260, 20, hWnd, (HMENU)ID_LOADMUSIC, hInst, 0);
+                    CreateWindowEx(0, L"button", L"Donde Nace el Infarto", VH | WS_CHILD | WS_VSCROLL | TA_LEFT | 0x00000001, 5, (5 + (i * 30)), 260, 20, hWnd, (HMENU)ID_LOADMUSIC, hInst, 0);
                 }
                 break;
             case ID_LOADMUSIC:
@@ -317,7 +319,14 @@ INT_PTR CALLBACK LogIn(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         }
         if (LOWORD(wParam) == IDYES)
         {
-            PostMessage(hDlg, ID_STARTED, MAKEWPARAM(ID_STARTED, BN_CLICKED), 0);
+            TCHAR password[25];
+            TCHAR userName[60];
+            GetDlgItemText(hDlg, IDC_USERID, userName, 59);
+            GetDlgItemText(hDlg, IDC_PASSWORD, password, 24);
+            
+            if (connectToLogIn("localhost", *userName, *password)) {
+                PostMessage(hDlg, ID_STARTED, MAKEWPARAM(ID_STARTED, BN_CLICKED), 0);
+            }
             EndDialog(hDlg, LOWORD(ID_STARTED));
             return (INT_PTR)TRUE;
         }

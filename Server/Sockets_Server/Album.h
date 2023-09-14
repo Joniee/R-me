@@ -18,7 +18,7 @@ private:
 	string m_title;
 	int m_year;
 	string m_artist;
-	Linkedlist m_songs;
+	Linkedlist* m_songs;
 public:
 	Album();
 	Album(string, int, string);

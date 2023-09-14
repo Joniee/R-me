@@ -6,7 +6,7 @@
 // #pragma comment (lib, "Mswsock.lib")
 
 #define DEFAULT_BUFLEN 512
-#define DEFAULT_PORT "27015"
+#define DEFAULT_PORT "25665"
 
 int initServer(PCSTR serverIP = "localhost")
 {
@@ -92,12 +92,35 @@ int initServer(PCSTR serverIP = "localhost")
     closesocket(ListenSocket);
 
     // Receive until the peer shuts down the connection
-    while (!sesion) {
+    iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
+    cout << iResult << endl;
+    if (iResult > 0) {
+        userName.insert(0, recvbuf, iResult);
+        cout << userName << endl;
+
+        iResult = send(ClientSocket, "OK", 2, 0);
+        if (iResult == SOCKET_ERROR) {
+            printf("send failed with error: %d\n", WSAGetLastError());
+            closesocket(ClientSocket);
+            WSACleanup();
+            return 1;
+        }
+
         iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
         if (iResult > 0) {
-            userName.insert(0, recvbuf, iResult);
-            cout << userName << endl;
-
+            password.insert(0, recvbuf, iResult);
+            cout << password << endl;
+            if (user1.comparePass(userName, password))
+            {
+                sesion = true;
+                send(ClientSocket, "True", 2, 0);
+                cout << "Sesión iniciada correctamente." << endl;
+            }
+            else {
+                sesion = false;
+                send(ClientSocket, "False", 2, 0);
+                cout << "Error al iniciar sesion. Usuario o contraseña erróneos." << endl;
+            }
             iResult = send(ClientSocket, "OK", 2, 0);
             if (iResult == SOCKET_ERROR) {
                 printf("send failed with error: %d\n", WSAGetLastError());
@@ -105,45 +128,27 @@ int initServer(PCSTR serverIP = "localhost")
                 WSACleanup();
                 return 1;
             }
-
-            iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
-            if (iResult > 0) {
-                password.insert(0, recvbuf, iResult);
-                cout << password << endl;
-                if (user1.comparePass(userName, password))
-                {
-                    sesion = true;
-                    cout << "Sesión iniciada correctamente." << endl;
-                }
-                else {
-                    sesion = false;
-                    cout << "Error al iniciar sesion. Usuario o contraseña erróneos." << endl;
-                }
-                iResult = send(ClientSocket, "OK", 2, 0);
-                if (iResult == SOCKET_ERROR) {
-                    printf("send failed with error: %d\n", WSAGetLastError());
-                    closesocket(ClientSocket);
-                    WSACleanup();
-                    return 1;
-                }
-            }
-            else if (iResult == 0)
-                printf("Connection closing...\n");
-            else {
-                printf("recv failed with error: %d\n", WSAGetLastError());
-                closesocket(ClientSocket);
-                WSACleanup();
-                return 1;
-            }
         }
-        else if (iResult == 0)
+        else if (iResult == 0) {
             printf("Connection closing...\n");
+            return 0;
+        }
         else {
             printf("recv failed with error: %d\n", WSAGetLastError());
             closesocket(ClientSocket);
             WSACleanup();
             return 1;
         }
+    }
+    else if (iResult == 0) {
+        printf("Connection closing...\n");
+        return 0;
+    }
+    else {
+        printf("recv failed with error: %d\n", WSAGetLastError());
+        closesocket(ClientSocket);
+        WSACleanup();
+        return 1;
     }
 
     do {
