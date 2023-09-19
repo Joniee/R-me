@@ -25,8 +25,8 @@ int connectToLogIn(const char* serverIP, TCHAR sendUser, TCHAR sendPass)
     struct addrinfo* result = NULL,
         * ptr = NULL,
         hints;
-    char sendUserbuf[DEFAULT_BUFLEN] = { "" };
-    char sendPassbuf[DEFAULT_BUFLEN] = { "" };
+    char* sendUserbuf = NULL; 
+    char* sendPassbuf = NULL;
     char recvbuf[DEFAULT_BUFLEN];
     int iResult;
     int recvbuflen = DEFAULT_BUFLEN;
@@ -82,10 +82,13 @@ int connectToLogIn(const char* serverIP, TCHAR sendUser, TCHAR sendPass)
         WSACleanup();
         return 1;
     }
-    sprintf_s(sendUserbuf, "%S", &sendUser);
+    
+    int charCount = WideCharToMultiByte(CP_ACP, 0, &sendUser, -1, NULL, 0, NULL, NULL);
+    sendUserbuf = new CHAR[charCount];
+    WideCharToMultiByte(CP_ACP, 0, &sendUser, -1, sendUserbuf, charCount, NULL, NULL);
 
     // Send an initial buffer
-    iResult = send(ConnectSocket, sendUserbuf, (int)(sendUser), 0);
+    iResult = send(ConnectSocket, sendUserbuf, (int)strlen(sendUserbuf), 0);
     if (iResult == SOCKET_ERROR) {
         printf("send failed with error: %d\n", WSAGetLastError());
         closesocket(ConnectSocket);
@@ -104,10 +107,12 @@ int connectToLogIn(const char* serverIP, TCHAR sendUser, TCHAR sendPass)
     else
         printf("recv failed with error: %d\n", WSAGetLastError());
 
-    sprintf_s(sendPassbuf, "%S", &sendPass);
+    charCount = WideCharToMultiByte(CP_ACP, 0, &sendPass, -1, NULL, 0, NULL, NULL);
+    sendPassbuf = new CHAR[charCount];
+    WideCharToMultiByte(CP_ACP, 0, &sendPass, -1, sendPassbuf, charCount, NULL, NULL);
 
     // Send an initial buffer
-    iResult = send(ConnectSocket, sendPassbuf, 25, 0);
+    iResult = send(ConnectSocket, sendPassbuf, (int)strlen(sendPassbuf), 0);
     if (iResult == SOCKET_ERROR) {
         printf("send failed with error: %d\n", WSAGetLastError());
         closesocket(ConnectSocket);
